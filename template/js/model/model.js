@@ -1,4 +1,4 @@
-export default class Model {
+module.exports = class Model {
     constructor(state = []) {
         this.state = state;
     }
@@ -24,4 +24,4 @@ export default class Model {
             this.state.splice(item, 1);
         }
     }
-}
+};

@@ -1,4 +1,4 @@
-import Model from './modules/model';
+const Model = require('./modules/model');
 import View from './modules/view';
 import Controller from './modules/controller';
 

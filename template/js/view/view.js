@@ -1,14 +1,12 @@
-import createElement from './helpers/create-element';
-import EventEmitter from './helpers/event-emitter';
+const createElement = require('./helpers/create-element');
+const EventEmitter = require('./helpers/event-emitter');
 
-
-export default class View extends EventEmitter {
+module.exports = class View extends EventEmitter {
     constructor() {
         super();
 
         this.file = document.getElementById('file');
-        this.video = document.getElementById('video');
-        this.play = document.getElementById('play');
+        this.area = document.getElementById('area');
 
         this.file.addEventListener('click', this.getFile.bind(this));
     }
@@ -30,8 +28,9 @@ export default class View extends EventEmitter {
         fileReader.readAsDataURL(data.file);
 
         fileReader.addEventListener('load', (even) => {
-            this.video.setAttribute('src', `${even.srcElement.result}`);
+            console.log(even);
+            // this.video.setAttribute('src', `${even.srcElement.result}`);
         });
 
     }
-}
+};

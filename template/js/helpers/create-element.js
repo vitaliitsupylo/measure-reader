@@ -1,4 +1,4 @@
-export default function createElement(tag, props, ...children) {
+module.exports = (tag, props, ...children) => {
 
     const element = document.createElement(tag);
 

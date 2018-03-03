@@ -1,1 +1,1 @@
-C:\Users\vitalii\Documents\nwjs\nw.exe C:\Users\vitalii\Documents\Projects\vmp
+C:\Users\vitalii\Documents\nwjs\nw.exe C:\Users\vitalii\Documents\Projects\measure-reader
