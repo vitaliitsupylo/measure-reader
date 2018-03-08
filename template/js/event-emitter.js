@@ -1,4 +1,4 @@
-module.exports = class EventEmitter {
+class EventEmitter {
     constructor() {
         this.events = {}
     }
@@ -16,3 +16,5 @@ module.exports = class EventEmitter {
         }
     }
 };
+
+module.exports = EventEmitter;

@@ -1,4 +1,4 @@
-module.exports = class Controller {
+class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
@@ -16,3 +16,6 @@ module.exports = class Controller {
         this.view.fileReader(data);
     }
 };
+
+
+module.exports = Controller;

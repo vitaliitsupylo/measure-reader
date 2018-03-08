@@ -1,22 +1,27 @@
-const createElement = require('./helpers/create-element');
-const EventEmitter = require('./helpers/event-emitter');
+// const createElement = require('./../helpers/create-element');
+const EventEmitter = require('./event-emitter');
 
-module.exports = class View extends EventEmitter {
+class View extends EventEmitter {
     constructor() {
         super();
 
         this.file = document.getElementById('file');
         this.area = document.getElementById('area');
 
-        this.file.addEventListener('click', this.getFile.bind(this));
+
+        // this.file.addEventListener('click', this.getFile.bind(this));
+
     }
 
     getFile() {
+
+
         if (!this.input) {
             this.input = createElement('input', {'type': 'file'})
         }
 
         this.input.click();
+
         this.input.addEventListener('change', () => {
             this.emit('add', this.input.files[0]);
         });
@@ -34,3 +39,5 @@ module.exports = class View extends EventEmitter {
 
     }
 };
+
+module.exports = View;

@@ -1,4 +1,4 @@
-module.exports = class Model {
+class Model {
     constructor(state = []) {
         this.state = state;
     }
@@ -25,3 +25,5 @@ module.exports = class Model {
         }
     }
 };
+
+module.exports = Model;

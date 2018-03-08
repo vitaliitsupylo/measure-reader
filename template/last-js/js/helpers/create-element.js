@@ -13,4 +13,4 @@ module.exports = (tag, props, ...children) => {
         });
     }
     return element;
-}
+};
