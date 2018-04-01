@@ -1,11 +1,10 @@
-const Model = require('./template/js/model');
-const View = require('./template/js/view');
-const Controller = require('./template/js/controller');
+const Model = require('./models/model');
+const View = require('./views/view');
+const Controller = require('./controllers/controller');
 
 const model = new Model();
 const view = new View();
 const controller = new Controller(model, view);
-
 
 const file = document.getElementById('file');
 

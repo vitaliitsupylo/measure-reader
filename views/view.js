@@ -1,5 +1,5 @@
-// const createElement = require('./../helpers/create-element');
-const EventEmitter = require('./event-emitter');
+const createElement = require('./createElement');
+const EventEmitter = require('./eventEmitter');
 
 class View extends EventEmitter {
     constructor() {
@@ -7,8 +7,6 @@ class View extends EventEmitter {
 
         this.file = document.getElementById('file');
         this.area = document.getElementById('area');
-
-
         // this.file.addEventListener('click', this.getFile.bind(this));
 
     }
