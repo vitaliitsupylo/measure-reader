@@ -9,12 +9,14 @@ class EventEmitter {
     }
 
     emit(type, arg) {
+        console.log(type);
         if (this.events[type]) {
             this.events[type].forEach((callback) => {
                 callback(arg);
             });
         }
     }
+
 };
 
 module.exports = EventEmitter;
