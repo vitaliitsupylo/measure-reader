@@ -4,7 +4,6 @@ const EventEmitter = require('./../eventEmitter');
 class View extends EventEmitter {
     constructor() {
         super();
-
         this.file = document.querySelector('#file');
         this.area = document.querySelector('#area');
         this.file.addEventListener('click', this.getFile.bind(this));
@@ -17,11 +16,11 @@ class View extends EventEmitter {
 
         this.input.click();
         this.input.addEventListener('change', () => {
-            this.emit('add', this.input.files[0]);
+            this.emit('add', this.input.files[0]['path']);
         });
     }
 
-    innerText(text) {
+    setText(text) {
         this.area.innerHTML = `${text}`;
     }
 };

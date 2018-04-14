@@ -1,29 +1,31 @@
 const fs = nw.require('fs');
+const PDFParser = nw.require("pdf2json");
+let pdfParser = new PDFParser();
 
 class Model {
-    constructor(state = {}) {
+
+    constructor(state = []) {
         this.state = state;
     }
 
-    addHistory(url, text) {
-        this.state[url] = text;
-        return url;
-    }
+    //
+    // addHistory(url, text) {
+    //     this.state[url] = text;
+    //     return url;
+    // }
 
-    getDataFile(url, innerText) {
 
-        if (this.state.hasOwnProperty(url)) {
-            innerText((this.state[url]));
-            return;
-        }
+    getDataFile(url) {
+        return new Promise((resolve, reject) => {
+            fs.readFile(url, 'utf8', (error, result) => {
+                // console.log(pdfParser.parseBuffer(result));
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            });
 
-        fs.readFile(url, 'utf8', (err, txt) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            this.addHistory(url, txt);
-            innerText(txt);
         });
     }
 

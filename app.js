@@ -95,7 +95,6 @@ const EventEmitter = __webpack_require__(4);
 class View extends EventEmitter {
     constructor() {
         super();
-
         this.file = document.querySelector('#file');
         this.area = document.querySelector('#area');
         this.file.addEventListener('click', this.getFile.bind(this));
@@ -108,11 +107,11 @@ class View extends EventEmitter {
 
         this.input.click();
         this.input.addEventListener('change', () => {
-            this.emit('add', this.input.files[0]);
+            this.emit('add', this.input.files[0]['path']);
         });
     }
 
-    innerText(text) {
+    setText(text) {
         this.area.innerHTML = `${text}`;
     }
 };
@@ -156,14 +155,12 @@ class EventEmitter {
     }
 
     emit(type, arg) {
-        console.log(type);
         if (this.events[type]) {
             this.events[type].forEach((callback) => {
                 callback(arg);
             });
         }
     }
-
 };
 
 module.exports = EventEmitter;
@@ -173,31 +170,33 @@ module.exports = EventEmitter;
 /***/ (function(module, exports) {
 
 const fs = nw.require('fs');
+const PDFParser = nw.require("pdf2json");
+let pdfParser = new PDFParser();
 
 class Model {
-    constructor(state = {}) {
+
+    constructor(state = []) {
         this.state = state;
     }
 
-    addHistory(url, text) {
-        this.state[url] = text;
-        return url;
-    }
+    //
+    // addHistory(url, text) {
+    //     this.state[url] = text;
+    //     return url;
+    // }
 
-    getDataFile(url, innerText) {
 
-        if (this.state.hasOwnProperty(url)) {
-            innerText((this.state[url]));
-            return;
-        }
+    getDataFile(url) {
+        return new Promise((resolve, reject) => {
+            fs.readFile(url, 'utf8', (error, result) => {
+                // console.log(pdfParser.parseBuffer(result));
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            });
 
-        fs.readFile(url, 'utf8', (err, txt) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            this.addHistory(url, txt);
-            innerText(txt);
         });
     }
 
@@ -214,16 +213,22 @@ class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
-        view.on('add', this.readFile.bind(this));
+        view.on('add', this.addData.bind(this));
     }
 
-    readFile(file) {
-        this.model.getDataFile(file.path, this.setFile.bind(this));
+
+    async addData(urlFile) {
+        let text = await this.model.getDataFile(urlFile);
+        this.view.setText(text);
     }
 
-    setFile(text) {
-        this.view.innerText(text);
-    }
+    // readFile(file) {
+    //     this.model.getDataFile(file.path, this.setFile.bind(this));
+    // }
+    //
+    // setFile(text) {
+    //     this.view.innerText(text);
+    // }
 
 };
 

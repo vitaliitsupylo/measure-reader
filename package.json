@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "handlebars": "^4.0.11",
-    "node": "^9.5.0"
+    "node": "^9.5.0",
+    "pdf2json": "^1.1.7"
   }
 }
