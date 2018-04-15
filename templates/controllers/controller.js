@@ -8,6 +8,7 @@ class Controller {
 
     async addData(urlFile) {
         let text = await this.model.getDataFile(urlFile);
+        console.log(text);
         this.view.setText(text);
     }
 
