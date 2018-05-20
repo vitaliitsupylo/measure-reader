@@ -1,1 +1,0 @@
-D:\nwjs\nw.exe D:\Projects\measure-reader

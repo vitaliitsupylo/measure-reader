@@ -2,10 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: ['./templates/main.js'],
+    entry: ['./src/index.js'],
     output: {
         path: path.resolve(__dirname),
-        filename: 'app.js'
+        filename: 'dist/js/main.js'
     }
 };
 
